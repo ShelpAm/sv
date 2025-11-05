@@ -24,7 +24,7 @@
         formData.append("schoolId", schoolId);
         formData.append("assignmentName", assignmentName);
 
-        const res = await fetch("http://localhost:8080/api/process-homework", {
+        const res = await fetch("/api/process-homework", {
             method: "POST",
             body: formData,
         });
@@ -44,7 +44,7 @@
         const fd = new FormData();
         fd.append("taskId", processRes.TaskId);
         const timer = setInterval(async () => {
-            const r = await fetch("http://localhost:8080/api/progress", {
+            const r = await fetch("/api/progress", {
                 method: "POST",
                 body: fd,
             });
