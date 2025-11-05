@@ -82,9 +82,9 @@
                                 new Date() > new Date(a.EndTime)}
                         >
                             {a.Name === "五个一" ? "数据库" : a.Name}
-                            ({new Date(a.BeginTime).toLocaleDateString()} - {new Date(
+                            ({new Date(a.BeginTime).toLocaleString()} - {new Date(
                                 a.EndTime,
-                            ).toLocaleDateString()})
+                            ).toLocaleString()})
                             {new Date() < new Date(a.BeginTime) ||
                             new Date() > new Date(a.EndTime)
                                 ? " ❌已关闭"
