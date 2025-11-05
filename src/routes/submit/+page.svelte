@@ -82,12 +82,10 @@
                                 new Date() > new Date(a.EndTime)}
                         >
                             {a.Name === "五个一" ? "数据库" : a.Name}
-                            ({new Date(a.BeginTime).toLocaleString()} - {new Date(
-                                a.EndTime,
-                            ).toLocaleString()})
+                            (截至 {new Date(a.EndTime).toLocaleString()})
                             {new Date() < new Date(a.BeginTime) ||
                             new Date() > new Date(a.EndTime)
-                                ? " ❌已关闭"
+                                ? "已逾期"
                                 : ""}
                         </option>
                     {/each}
