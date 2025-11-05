@@ -119,7 +119,6 @@
                 <input
                     id="file"
                     type="file"
-                    accept=".rar,.zip,.7z,.xz,.gz,.doc,.docx"
                     onchange={(e) =>
                         (file =
                             (e.target as HTMLInputElement).files?.[0] ?? null)}
