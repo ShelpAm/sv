@@ -62,6 +62,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>Submit My Homework</title>
+</svelte:head>
+
 <div id="wrapper">
     <div class="container">
         <h1>提交作业</h1>

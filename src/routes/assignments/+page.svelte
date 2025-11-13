@@ -2,6 +2,10 @@
     var { data } = $props();
 </script>
 
+<svelte:head>
+    <title>Assignments</title>
+</svelte:head>
+
 <a href="/submit">Go Back</a>
 
 <h2>Assignments</h2>

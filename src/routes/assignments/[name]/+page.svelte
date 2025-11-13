@@ -4,6 +4,10 @@
 
 <a href="/assignments">Go Back</a>
 
+<svelte:head>
+    <title>Submissions for {data.name}</title>
+</svelte:head>
+
 <h2>Submissions for {data.name}</h2>
 
 <table class="file-table">
