@@ -1,4 +1,9 @@
 <script lang="ts">
+    import {
+        FormatDate,
+        FormatDateWithAdjustedTimezone,
+    } from "$lib/helpers.js";
+
     var { data } = $props();
 </script>
 
@@ -8,35 +13,37 @@
     <title>Submissions for {data.name}</title>
 </svelte:head>
 
-<h2>Submissions for {data.name}</h2>
+{#if data.submissions != undefined}
+    <h2>Submissions for {data.name}</h2>
 
-<table class="file-table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Last Modified</th>
-            <!-- <th>Download</th> -->
-        </tr>
-    </thead>
-    <tbody>
-        {#each data.submissions as file}
+    <table class="file-table">
+        <thead>
             <tr>
-                <td>{file.Name}</td>
-                <td>{new Date(file.LastModified).toLocaleString()}</td>
-                <!-- <td> -->
-                <!--     <a -->
-                <!--         href={`/home/homeworks/${data.name}/${file.Name}`} -->
-                <!--         target="_blank" -->
-                <!--     > -->
-                <!--         Download -->
-                <!--     </a> -->
-                <!-- </td> -->
+                <th>Name</th>
+                <th>Last Modified on</th>
+                <!-- <th>Download</th> -->
             </tr>
-        {/each}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {#each Object.entries(data.submissions) as [_, s]}
+                <tr>
+                    <td>{s.student_id}</td>
+                    <td>{FormatDateWithAdjustedTimezone(s.submission_time)}</td>
+                    <!-- <td> -->
+                    <!--     <a -->
+                    <!--         href={`/home/homeworks/${data.name}/${file.Name}`} -->
+                    <!--         target="_blank" -->
+                    <!--     > -->
+                    <!--         Download -->
+                    <!--     </a> -->
+                    <!-- </td> -->
+                </tr>
+            {/each}
+        </tbody>
+    </table>
 
-<p>Totally {data.submissions.length} files.</p>
+    <p>Totally {Object.entries(data.submissions).length} files.</p>
+{/if}
 
 <style>
     table {

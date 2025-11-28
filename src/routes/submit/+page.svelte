@@ -81,14 +81,15 @@
                     <option value="">请选择作业</option>
                     {#each data.assignments as a}
                         <option
-                            value={a.Name}
-                            disabled={new Date() < new Date(a.BeginTime) ||
-                                new Date() > new Date(a.EndTime)}
+                            value={a.name}
+                            disabled={new Date() < new Date(a.start_time) ||
+                                new Date() > new Date(a.end_time)}
                         >
-                            {a.Name === "五个一" ? "数据库" : a.Name}
-                            (截至 {new Date(a.EndTime).toLocaleString()})
-                            {new Date() < new Date(a.BeginTime) ||
-                            new Date() > new Date(a.EndTime)
+                            {a.name} (截至 {new Date(
+                                a.end_time,
+                            ).toLocaleString()})
+                            {new Date() < new Date(a.start_time) ||
+                            new Date() > new Date(a.end_time)
                                 ? "已逾期"
                                 : ""}
                         </option>

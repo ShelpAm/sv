@@ -1,9 +1,10 @@
 import type { PageLoad } from './$types';
-import type { Submission } from '$lib/types';
+import type { AssignmentNew } from '$lib/types';
 
-export const load: PageLoad = async (event) => {
-    const name = event.params.name;
-    const res = await event.fetch(`/api/submissions?AssignmentName=${encodeURIComponent(name)}`);
-    const submissions: Submission[] = await res.json();
-    return { name, submissions };
+export const load: PageLoad = async ({ fetch, params }) => {
+    const name = params.name;
+    const res = await fetch(`/api/assignments`);
+    const assignments: AssignmentNew[] = await res.json();
+    const a = assignments.find((e) => e.name == name);
+    return { name, submissions: a?.submissions };
 };
