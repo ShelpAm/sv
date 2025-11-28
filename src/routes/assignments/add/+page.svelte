@@ -5,29 +5,21 @@
     var { data } = $props();
 
     var success = $state("");
+    var name = $state("");
     var start_time = $state("");
     var end_time = $state("");
-    var template_a: AssignmentNew = {
-        name: "",
-        start_time: new Date(),
-        end_time: new Date(),
-        submissions: {},
-    };
-    var a = $state(template_a);
 
     var onsubmit = async () => {
-        a.start_time = new Date(start_time);
-        a.end_time = new Date(end_time);
         const res = await fetch("/api/assignments/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name: a.name,
-                start_time: a.start_time.toISOString(),
-                end_time: a.end_time.toISOString(),
-                submissions: a.submissions,
+                name,
+                start_time: new Date(start_time).toISOString(),
+                end_time: new Date(end_time).toISOString(),
+                submissions: {},
             }),
         });
         if (!res.ok) {
@@ -46,7 +38,7 @@
     <h3>Add New Assignment</h3>
     <form {onsubmit}>
         <label for="name">Assignment Name:</label>
-        <input id="name" type="text" bind:value={a.name} required />
+        <input id="name" type="text" bind:value={name} required />
 
         <label for="start_time">Start Time:</label>
         <input

@@ -18,26 +18,31 @@ export interface Submission {
 export interface SubmissionNew {
     assignment_name: string;
     student_id: string;
-    submission_time: string | Date;
+    submission_time: string;
     filepath: string;
     original_filename: string;
 }
 
 export interface AssignmentNew {
     name: string;
-    start_time: Date;
-    end_time: Date;
+    start_time: string;
+    end_time: string;
     submissions: Record<string, SubmissionNew>;
 }
 
-export interface File {
+export interface HCFile {
     filename: string;
     content: string;
 }
 
-export interface SubmissionRequest {
+export interface SubmitRequest {
     student_id: string;
+    student_name: string;
     assignment_name: string;
-    file: File
+    file: HCFile
 }
 
+export interface Student {
+    student_id: string;
+    name: string;
+}

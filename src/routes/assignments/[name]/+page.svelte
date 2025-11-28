@@ -1,9 +1,4 @@
 <script lang="ts">
-    import {
-        FormatDate,
-        FormatDateWithAdjustedTimezone,
-    } from "$lib/helpers.js";
-
     var { data } = $props();
 </script>
 
@@ -19,8 +14,9 @@
     <table class="file-table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Last Modified on</th>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Last Modified at</th>
                 <!-- <th>Download</th> -->
             </tr>
         </thead>
@@ -28,7 +24,12 @@
             {#each Object.entries(data.submissions) as [_, s]}
                 <tr>
                     <td>{s.student_id}</td>
-                    <td>{FormatDateWithAdjustedTimezone(s.submission_time)}</td>
+                    <td
+                        >{data.students.find(
+                            (e) => s.student_id == e.student_id,
+                        )?.name}</td
+                    >
+                    <td>{new Date(s.submission_time).toLocaleString()}</td>
                     <!-- <td> -->
                     <!--     <a -->
                     <!--         href={`/home/homeworks/${data.name}/${file.Name}`} -->
