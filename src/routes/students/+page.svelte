@@ -1,5 +1,5 @@
 <script lang="ts">
-    import StudentList from "$lib/student-list.svelte";
+    import StudentTable from "$lib/student-table.svelte";
 
     var { data } = $props();
 </script>
@@ -10,4 +10,5 @@
 
 <a href="/">Go Back</a>
 
-<StudentList students={data.students} />
+<h2>Students</h2>
+<StudentTable students={data.students} />

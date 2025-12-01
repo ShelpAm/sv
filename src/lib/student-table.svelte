@@ -4,8 +4,6 @@
     var { students }: { students: Student[] } = $props();
 </script>
 
-<h2>Students</h2>
-
 <table>
     <thead>
         <tr>
