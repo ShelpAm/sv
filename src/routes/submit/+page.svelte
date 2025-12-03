@@ -107,6 +107,7 @@
                             disabled={new Date() < new Date(a.start_time) ||
                                 new Date() > new Date(a.end_time)}
                         >
+                            <!-- {a.start_time + " " + a.end_time} -->
                             {a.name}
                             {new Date(a.start_time).toLocaleString()} - {new Date(
                                 a.end_time,
