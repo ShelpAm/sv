@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "./old.css";
+    import "./new.css";
     import { goto } from "$app/navigation";
     import type {
         /* ProcessHomeworkResult, */ SubmitRequest,
