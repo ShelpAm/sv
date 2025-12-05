@@ -5,6 +5,5 @@ export const load: PageLoad = async (event) => {
     const res = await event.fetch("/api/assignments");
     const assignments: AssignmentNew[] = await res.json();
 
-    // const assignments: Assignment[] = [];
     return { assignments };
 };

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import "./old.css";
     import { goto } from "$app/navigation";
     import type {
         /* ProcessHomeworkResult, */ SubmitRequest,
@@ -10,7 +11,7 @@
     let username = $state("");
     let schoolId = $state("");
     let assignmentName = $state("");
-    let file: File | null = null;
+    var file: FileList | null = $state(null);
 
     // 提交文件
     async function submitHomework(e: SubmitEvent) {
@@ -26,8 +27,8 @@
             student_name: username,
             assignment_name: assignmentName,
             file: {
-                filename: file.name,
-                content: await EncodeBase64(file),
+                filename: file[0].name,
+                content: await EncodeBase64(file[0]),
             },
         };
         const res = await fetch("/api/assignments/submit", {
@@ -102,21 +103,22 @@
                 >
                     <option value="">请选择作业</option>
                     {#each data.assignments as a}
-                        <option
-                            value={a.name}
-                            disabled={new Date() < new Date(a.start_time) ||
-                                new Date() > new Date(a.end_time)}
-                        >
-                            <!-- {a.start_time + " " + a.end_time} -->
-                            {a.name}
-                            {new Date(a.start_time).toLocaleString()} - {new Date(
-                                a.end_time,
-                            ).toLocaleString()}
-                            {new Date() < new Date(a.start_time)
+                        {@const value = a.name}
+                        {@const now = new Date()}
+                        {@const disabled =
+                            now < new Date(a.start_time) ||
+                            now > new Date(a.end_time)}
+                        {@const status =
+                            now < new Date(a.start_time)
                                 ? "未开始"
-                                : new Date() > new Date(a.end_time)
+                                : now > new Date(a.end_time)
                                   ? "已逾期"
                                   : ""}
+                        <option {value} {disabled}>
+                            {a.name}
+                            {new Date(a.start_time).toLocaleString()} -
+                            {new Date(a.end_time).toLocaleString()}
+                            {status}
                         </option>
                     {/each}
                 </select>
@@ -144,14 +146,7 @@
 
             <div class="form-group">
                 <label for="file">选择文件:</label>
-                <input
-                    id="file"
-                    type="file"
-                    onchange={(e) =>
-                        (file =
-                            (e.target as HTMLInputElement).files?.[0] ?? null)}
-                    required
-                />
+                <input id="file" type="file" bind:files={file} required />
             </div>
 
             <div class="buttons form-group">
@@ -167,123 +162,3 @@
         </form>
     </div>
 </div>
-
-<style>
-    #wrapper {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-        color: #495057;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-
-    .container {
-        background: #ffffff;
-        padding: 40px;
-        border-radius: 16px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        max-width: 500px;
-        width: 100%;
-        text-align: center;
-        border: 1px solid #dee2e6;
-    }
-
-    h1 {
-        margin-bottom: 20px;
-        color: #343a40;
-        font-size: 26px;
-        font-weight: 600;
-    }
-
-    .form-group {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 24px;
-    }
-
-    label {
-        font-size: 15px;
-        color: #6c757d;
-        font-weight: 500;
-        margin-right: 0px;
-        /* 添加右边距 */
-        flex: 0.4;
-        /* 使标签占据一定空间 */
-    }
-
-    select,
-    input[type="text"],
-    input[type="file"] {
-        padding: 14px;
-        font-size: 16px;
-        border: 1px solid #ced4da;
-        border-radius: 8px;
-        flex: 2;
-        /* 使输入框占据更多空间 */
-    }
-
-    .buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 14px 28px;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-        transition:
-            background-color 0.3s,
-            transform 0.2s,
-            box-shadow 0.2s;
-    }
-
-    .button:hover {
-        background-color: #0056b3;
-        transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .button:active {
-        background-color: #004085;
-        transform: scale(1);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .button-green {
-        background-color: #28a745;
-        /* 绿色 */
-        color: #fff;
-        border: none;
-        padding: 14px 28px;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-        transition:
-            background-color 0.3s,
-            transform 0.2s,
-            box-shadow 0.2s;
-    }
-
-    .button-green:hover {
-        background-color: #218838;
-        transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .button-green:active {
-        background-color: #1e7e34;
-        transform: scale(1);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-</style>
