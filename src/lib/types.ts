@@ -46,3 +46,13 @@ export interface Student {
     student_id: string;
     name: string;
 }
+
+export interface AdminLoginParams {
+    username: string;
+    password: string;
+}
+
+export interface AdminLoginResult {
+    token: string;
+}
+
