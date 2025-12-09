@@ -7,8 +7,9 @@
     var username = $state("");
     var password = $state("");
 
-    async function submit(e: Event) {
+    async function onsubmit(e: Event) {
         e.preventDefault();
+
         const params: AdminLoginParams = {
             username: username,
             password: password,
@@ -26,7 +27,7 @@
 
         if (!res.ok) {
             const err = await res.text();
-            alert("An error occurred: " + err + " See details in console");
+            alert("An error occurred: " + err + ". See details in console");
             console.error(err);
             return;
         }
@@ -43,10 +44,10 @@
     }
 </script>
 
-<form>
+<form {onsubmit}>
     <label for="username">Username:</label>
     <input id="username" type="text" bind:value={username} />
     <label for="password">Password:</label>
     <input id="password" type="password" bind:value={password} />
-    <button onclick={submit} type="submit">Log in</button>
+    <button type="submit">Log in</button>
 </form>

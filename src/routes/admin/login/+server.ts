@@ -1,6 +1,5 @@
 import type { AdminLoginParams, AdminLoginResult } from "$lib/types";
-import type { RequestHandler } from "./$types";
-import { json } from "@sveltejs/kit";
+import { json, type RequestHandler } from "@sveltejs/kit";
 
 export const POST: RequestHandler = async ({ request, cookies, fetch }) => {
     const params: AdminLoginParams = await request.json();

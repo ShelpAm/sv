@@ -6,17 +6,20 @@ import { verify_token } from '$lib/helpers';
 const admin_pages = new Set(["/assignments/add", "/assignments/export", "/students/add", "/admin/dashboard"]);
 
 export const load: LayoutServerLoad = async ({ url, cookies, fetch }) => {
-    const token = cookies.get("token");
+    // If user visiting sensitive pages, check token.
+    if (url.pathname == '/admin/login') {
+        return
+    }
+    if (!admin_pages.has(url.pathname)) {
+        return
+    }
 
+    const token = cookies.get("token");
     console.log("Verifying token before any page loading: " + token);
     if (await verify_token(token ?? "", fetch)) {
-        console.log("Verified token: " + token);
+        console.log("Verification passed.");
     } else {
-        if (url.pathname == '/admin/login') {
-            return
-        }
-        if (admin_pages.has(url.pathname)) {
-            throw redirect(302, '/admin/login?return_to=' + url.pathname);
-        }
+        console.log("Verification failed. Redirecting to /admin/login");
+        throw redirect(302, '/admin/login?return_to=' + url.pathname);
     }
 };

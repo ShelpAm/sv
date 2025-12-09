@@ -4,9 +4,9 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [sveltekit()],
     server: {
-        proxy: {
-            "/api": "http://localhost:8080"
-        },
-        allowedHosts: ["shelpa.me",]
+        // proxy: {
+        //     "/api": "http://localhost:8080"
+        // },
+        // allowedHosts: ["shelpa.me",]
     }
 });
