@@ -16,11 +16,11 @@ async function template_get<T>(url: string, fetch?: any) {
 }
 
 export async function fetch_assignments(fetch?: any) {
-    const url = "/api/assignments";
+    const url = "https://shelpa.me/api/assignments";
     return await template_get<AssignmentNew[]>(url, fetch);
 }
 
 export async function fetch_students(fetch?: any) {
-    const url = "/api/assignments";
+    const url = "https://shelpa.me/api/assignments";
     return await template_get<Student[]>(url, fetch);
 }
