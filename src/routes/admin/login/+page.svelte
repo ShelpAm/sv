@@ -25,12 +25,9 @@
         }
 
         if (!res.ok) {
-            alert(
-                "An error occurred: " +
-                    (await res.text()) +
-                    " See details in console",
-            );
-            console.error(await res.text());
+            const err = await res.text();
+            alert("An error occurred: " + err + " See details in console");
+            console.error(err);
             return;
         }
 

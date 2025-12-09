@@ -24,7 +24,7 @@ export const POST: RequestHandler = async ({ request, cookies, fetch }) => {
     cookies.set("token", token, {
         path: "/",            // 所有路径可访问
         httpOnly: true,       // JS 读不到，防 XSS
-        secure: false,         // HTTPS 才能用
+        secure: true,         // HTTPS 才能用
         sameSite: "strict",   // 防 CSRF
         maxAge: 60 * 60 * 24 * 7 // 7 天
     });
