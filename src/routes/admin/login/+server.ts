@@ -20,10 +20,11 @@ export const POST: RequestHandler = async ({ request, cookies, fetch }) => {
     const token = result.token;
 
     // 2. 设置 HttpOnly Cookie（最安全）
+    console.log("Setting cookie");
     cookies.set("token", token, {
         path: "/",            // 所有路径可访问
         httpOnly: true,       // JS 读不到，防 XSS
-        secure: true,         // HTTPS 才能用
+        secure: false,         // HTTPS 才能用
         sameSite: "strict",   // 防 CSRF
         maxAge: 60 * 60 * 24 * 7 // 7 天
     });

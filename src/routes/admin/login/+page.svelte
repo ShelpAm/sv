@@ -7,7 +7,8 @@
     var username = $state("");
     var password = $state("");
 
-    async function submit() {
+    async function submit(e: Event) {
+        e.preventDefault();
         const params: AdminLoginParams = {
             username: username,
             password: password,
@@ -50,5 +51,5 @@
     <input id="username" type="text" bind:value={username} />
     <label for="password">Password:</label>
     <input id="password" type="password" bind:value={password} />
-    <button onclick={submit} type="submit">Submit</button>
+    <button onclick={submit} type="submit">Log in</button>
 </form>
