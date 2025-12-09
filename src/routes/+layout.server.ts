@@ -1,4 +1,3 @@
-// src/routes/+layout.server.js
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 import { verify_token } from '$lib/helpers';

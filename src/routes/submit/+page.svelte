@@ -1,6 +1,5 @@
 <script lang="ts">
     import "./new.css";
-    import { goto } from "$app/navigation";
     import type {
         /* ProcessHomeworkResult, */ SubmitRequest,
     } from "$lib/types";
@@ -151,13 +150,14 @@
 
             <div class="buttons form-group">
                 <button type="submit" class="button">提交</button>
-                <button
-                    type="button"
-                    class="button-green"
-                    onclick={() => {
-                        goto("/assignments");
-                    }}>提交情况</button
-                >
+                <a href="/assignments" class="button-green">提交情况</a>
+                <!-- <button -->
+                <!--     type="button" -->
+                <!--     class="button-green" -->
+                <!--     onclick={() => { -->
+                <!--         goto("/assignments"); -->
+                <!--     }}>提交情况</button -->
+                <!-- > -->
             </div>
         </form>
     </div>
