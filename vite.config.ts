@@ -7,6 +7,6 @@ export default defineConfig({
         // proxy: {
         //     "/api": "http://localhost:8080"
         // },
-        // allowedHosts: ["shelpa.me",]
+        allowedHosts: ["shelpa.me",]
     }
 });
