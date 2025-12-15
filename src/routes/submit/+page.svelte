@@ -21,6 +21,8 @@
             return;
         }
 
+        alert("你的作业正在提交，请耐心等待。");
+
         var sr: SubmitRequest = {
             student_id: schoolId,
             student_name: username,

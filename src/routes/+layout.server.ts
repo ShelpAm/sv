@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
-import { verify_token } from '$lib/helpers';
+import { verify_token } from '$lib/api-calls';
 
 const admin_pages = new Set(["/assignments/add", "/assignments/export", "/students/add", "/admin/dashboard"]);
 

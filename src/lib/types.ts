@@ -56,3 +56,7 @@ export interface AdminLoginResult {
     token: string;
 }
 
+
+export interface AdminVerifyTokenResult {
+    ok: boolean
+};

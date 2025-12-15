@@ -1,3 +1,4 @@
+import { baseurl } from "$lib/api-calls";
 import type { AdminLoginParams, AdminLoginResult } from "$lib/types";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
@@ -5,7 +6,7 @@ export const POST: RequestHandler = async ({ request, cookies, fetch }) => {
     const params: AdminLoginParams = await request.json();
 
     // 1. 调用 C++ 后端验证账号密码
-    const res = await fetch("https://shelpa.me/api/admin/login", {
+    const res = await fetch(baseurl + "/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(params)

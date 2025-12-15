@@ -1,4 +1,4 @@
-import type { AssignmentNew, Student } from "./types";
+import type { AdminVerifyTokenResult, AssignmentNew, Student } from "./types";
 
 async function template_get<T>(url: string, fetch?: any) {
     const res = await fetch(url);
@@ -15,12 +15,31 @@ async function template_get<T>(url: string, fetch?: any) {
     return result;
 }
 
+export const baseurl = "https://shelpa.me";
+// export const baseurl = "http://localhost";
+
 export async function fetch_assignments(fetch?: any) {
-    const url = "https://shelpa.me/api/assignments";
+    const url = baseurl + "/api/assignments";
     return await template_get<AssignmentNew[]>(url, fetch);
 }
 
 export async function fetch_students(fetch?: any) {
-    const url = "https://shelpa.me/api/assignments";
+    const url = baseurl + "/api/students";
     return await template_get<Student[]>(url, fetch);
+}
+
+
+export async function verify_token(token: string, fetch?: any) {
+    const res = await fetch('/api/admin/verify-token', {
+        method: "POST",
+        body: JSON.stringify({
+            token: token ?? ""
+        })
+    });
+
+    if (!res) {
+        throw new Error("Could not connect to server");
+    }
+
+    return res.ok && (await res.json() as AdminVerifyTokenResult).ok;
 }

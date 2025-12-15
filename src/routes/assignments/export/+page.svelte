@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { baseurl } from "$lib/api-calls.js";
+
     var { data } = $props();
 
     var assignment_name = $state("");
@@ -10,10 +12,14 @@
             assignment_name: string;
         }
 
+        interface AssignmentExportResult {
+            exported_uri: string;
+        }
+
         var param: AssignmentExportParam = {
             assignment_name: assignment_name,
         };
-        const res = await fetch("/api/assignments/export", {
+        const res = await fetch(baseurl + "/api/assignments/export", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -26,17 +32,14 @@
             return;
         }
 
-        const blob = await res.blob();
+        const result: AssignmentExportResult = await res.json();
 
-        // Create a temporary download link
-        const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
-        a.href = url;
-        a.download = assignment_name + ".tar.zst";
+        a.href = result.exported_uri;
+        a.download = param.assignment_name + ".tar.zst";
         document.body.appendChild(a);
         a.click();
         a.remove();
-        URL.revokeObjectURL(url);
     };
 </script>
 

@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { verify_token } from '$lib/helpers';
+import { verify_token } from '$lib/api-calls';
 
 export const load: PageServerLoad = async ({ url, cookies, fetch }) => {
     const token = cookies.get('token');
