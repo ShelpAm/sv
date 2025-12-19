@@ -16,8 +16,8 @@ async function template_get<T>(url: string, fetch_impl?: typeof fetch) {
     return result;
 }
 
-// export const baseurl = "https://shelpa.me";
-export const baseurl = "http://localhost";
+export const baseurl = "https://shelpa.me";
+// export const baseurl = "http://localhost";
 
 export async function fetch_assignments(fetch_impl?: typeof fetch) {
     const url = baseurl + "/api/assignments";

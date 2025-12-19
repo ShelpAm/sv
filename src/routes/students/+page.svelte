@@ -12,3 +12,5 @@
 
 <h2>Students</h2>
 <StudentTable students={data.students} />
+
+<p>Totally {Object.entries(data.students).length} students.</p>
