@@ -15,15 +15,11 @@
             password: password,
         };
 
+        // Accesses local server.
         const res = await fetch("/admin/login", {
             method: "POST",
             body: JSON.stringify(params),
         });
-
-        if (!res) {
-            alert("Could not connect to server");
-            console.error("Could not connect to server");
-        }
 
         if (!res.ok) {
             const err = await res.text();
@@ -33,7 +29,6 @@
         }
 
         console.log("Login ok");
-        // ok
         if (data.return_to) {
             console.log("Redirecting to " + data.return_to);
             goto(data.return_to);

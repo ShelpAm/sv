@@ -44,6 +44,7 @@
         <input
             id="start_time"
             type="datetime-local"
+            lang="zh-CN"
             bind:value={start_time}
             required
         />
@@ -52,6 +53,7 @@
         <input
             id="end_time"
             type="datetime-local"
+            lang="zh-CN"
             bind:value={end_time}
             required
         />

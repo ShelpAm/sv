@@ -10,3 +10,18 @@ export function EncodeBase64(file: File): Promise<string> {
         reader.readAsDataURL(file);
     });
 }
+
+/// @return String in the form of 2025-12-22 11:42:07
+export function Format(date: Date) {
+    const y = date.getFullYear()
+    const m = date.getMonth() + 1 // 0-indexed
+    const d = date.getDate()
+
+    const h = date.getHours()
+    const M = date.getMinutes()
+    const s = date.getSeconds()
+
+    const pad = (n: number) => n.toString().padStart(2, '0')
+
+    return `${y}-${pad(m)}-${pad(d)} ${pad(h)}:${pad(M)}:${pad(s)}`
+}

@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { AssignmentNew } from "$lib/types.js";
+    import { Format } from "./helpers";
 
     var { assignments }: { assignments: AssignmentNew[] } = $props();
 </script>
@@ -18,8 +19,8 @@
         {#each assignments as a}
             <tr>
                 <td><a href="/assignments/{a.name}">{a.name}</a></td>
-                <td>{new Date(a.start_time).toLocaleString()}</td>
-                <td>{new Date(a.end_time).toLocaleString()}</td>
+                <td>{Format(new Date(a.start_time))}</td>
+                <td>{Format(new Date(a.end_time))}</td>
             </tr>
         {/each}
     </tbody>
