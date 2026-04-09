@@ -1,6 +1,7 @@
 <script lang="ts">
     import StudentTable from "$lib/student-table.svelte";
     import type { Student } from "$lib/types.js";
+    import { baseurl } from '$lib/api-calls';
 
     var { data } = $props();
 
@@ -50,7 +51,7 @@
     });
 
     var submit_student = async (stu: Student) => {
-        const res = await fetch("/api/students/add", {
+        const res = await fetch(baseurl + "/api/students/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
