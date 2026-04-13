@@ -1,62 +1,62 @@
 export interface ProcessHomeworkResult {
-  TaskId: string;
+    TaskId: string;
 }
 
 interface Assignment {
-  Name: string;
-  BeginTime: string;
-  EndTime: string;
+    Name: string;
+    BeginTime: string;
+    EndTime: string;
 }
 
 interface Submission {
-  Name: string;
-  Path: string;
-  LastModified: string;
+    Name: string;
+    Path: string;
+    LastModified: string;
 };
 
 
 export interface SubmissionNew {
-  assignment_name: string;
-  student_id: string;
-  submission_time: string;
-  filepath: string;
-  original_filename: string;
+    assignment_name: string;
+    student_id: string;
+    submission_time: string;
+    filepath: string;
+    original_filename: string;
 }
 
 export interface AssignmentNew {
-  name: string;
-  start_time: string;
-  end_time: string;
-  submissions: Record<string, SubmissionNew>;
+    name: string;
+    start_time: string;
+    end_time: string;
+    submissions: Record<string, SubmissionNew>; // StudentID -> Submission
 }
 
 export interface HCFile {
-  filename: string;
-  content: string;
+    filename: string;
+    content: string;
 }
 
 export interface SubmitRequest {
-  student_id: string;
-  student_name: string;
-  assignment_name: string;
-  file: HCFile
+    student_id: string;
+    student_name: string;
+    assignment_name: string;
+    file: HCFile
 }
 
 export interface Student {
-  student_id: string;
-  name: string;
+    student_id: string;
+    name: string;
 }
 
 export interface AdminLoginParams {
-  username: string;
-  password: string;
+    username: string;
+    password: string;
 }
 
 export interface AdminLoginResult {
-  token: string;
+    token: string;
 }
 
 
 export interface AdminVerifyTokenResult {
-  ok: boolean
+    ok: boolean
 };
