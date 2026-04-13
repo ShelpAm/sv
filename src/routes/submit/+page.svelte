@@ -4,6 +4,7 @@
         /* ProcessHomeworkResult, */ SubmitRequest,
     } from "$lib/types";
     import { EncodeBase64 } from "$lib/helpers";
+    import { baseurl } from '$lib/api-calls';
 
     var { data } = $props();
 
@@ -32,7 +33,7 @@
                 content: await EncodeBase64(file[0]),
             },
         };
-        const res = await fetch("/api/assignments/submit", {
+        const res = await fetch(baseurl + "/api/assignments/submit", {
             method: "POST",
             body: JSON.stringify(sr),
         });

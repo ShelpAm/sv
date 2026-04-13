@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { AssignmentNew } from "$lib/types.js";
     import AssignmentList from "$lib/assignment-list.svelte";
+    import { baseurl } from '$lib/api-calls';
 
     var { data } = $props();
 
@@ -10,7 +11,7 @@
     var end_time = $state("");
 
     var onsubmit = async () => {
-        const res = await fetch("/api/assignments/add", {
+        const res = await fetch(baseurl + "/api/assignments/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
