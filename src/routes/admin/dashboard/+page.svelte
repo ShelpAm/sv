@@ -1,4 +1,6 @@
 <script lang="ts">
+    import FabricTrial from "$lib/fabric-trial.svelte";
+
     var text = $state("");
     const confirm_str = "Yes I'm silly and want to stop the server";
 
